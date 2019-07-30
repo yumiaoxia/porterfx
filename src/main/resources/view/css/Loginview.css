@@ -1,0 +1,41 @@
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);;
+    -fx-cursor: hand;
+}
+
+.button {
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-font-size: 16px;
+    -fx-pref-width: 240px;
+    -fx-pref-height: 28px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #fff;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+}
+
+.text-field {
+    -fx-background-radius: 5%;
+    -fx-border-radius: 5%;
+}
+
+.login-title {
+    -fx-text-fill: #353535;
+    -fx-font-family: '微软雅黑';
+    -fx-font-weight: bolder;
+    -fx-font-size: 32px;
+    -fx-font-fill: darkslategray;
+}
+
+.form-box {
+    -fx-box-shadow: 10px 20px 15px #000;
+    -fx-border-radius: 5%;
+    -fx-background-radius: 5%;
+    -fx-background-color: #fff;
+}
+
+.black-ground {
+    -fx-background-image: url("../image/login_blackground.jpg");
+    -fx-background-repeat: repeat;
+    -fx-background-size: 100% 110%;
+}
