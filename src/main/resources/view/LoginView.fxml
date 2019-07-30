@@ -1,56 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" styleClass="black-ground"
-            stylesheets="@css/Loginview.css" xmlns="http://javafx.com/javafx/8" fx:controller="view.LoginView">
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" styleClass="black-ground" stylesheets="@css/Loginview.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itsherman.porterfx.controller.LoginController">
     <children>
         <Pane layoutX="95.0" layoutY="64.0" prefHeight="266.0" prefWidth="410.0" styleClass="form-box">
             <children>
                 <GridPane layoutX="-2.0" layoutY="-5.0" prefHeight="266.0" prefWidth="418.0" styleClass="grid-pane">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="91.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="310.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="149.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="105.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="204.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="110.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Pane prefHeight="38.0" prefWidth="183.0" styleClass="form-row" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <children>
-                                <Label layoutX="40.0" layoutY="18.0" text="用户名"/>
-                                <TextField layoutX="84.0" layoutY="8.0" prefHeight="34.0" prefWidth="186.0"/>
+                                <Label fx:id="usernameLabel" contentDisplay="RIGHT" layoutX="8.0" prefHeight="34.0" prefWidth="26.0" text="用  户名" />
+                                <TextField layoutX="32.0" layoutY="1.0" prefHeight="36.0" prefWidth="170.0" styleClass="text-field" />
                             </children>
                         </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" styleClass="form-row" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <children>
-                                <Label layoutX="40.0" layoutY="18.0" text="密  吗"/>
-                                <TextField layoutX="84.0" layoutY="11.0" prefHeight="34.0" prefWidth="186.0"/>
+                                <Label fx:id="passwordLabel" layoutX="9.0" layoutY="8.0" prefHeight="24.0" prefWidth="26.0" text="密      码" />
+                                <PasswordField layoutX="26.0" layoutY="1.0" prefHeight="36.0" prefWidth="170.0" />
                             </children>
                         </Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <children>
-                                <Label layoutX="41.0" layoutY="18.0" text="注册"/>
-                                <Label layoutX="228.0" layoutY="18.0" prefHeight="15.0" prefWidth="52.0" text="忘记密码"/>
+                                <Label prefHeight="34.0" prefWidth="73.0" styleClass="link" text="注 册" />
+                                <Label layoutX="133.0" prefHeight="34.0" prefWidth="73.0" styleClass="link" text="忘记密码" />
                             </children>
                         </Pane>
-                        <Label text="" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                        <Label text="" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                        <Label text="" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Label text="" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <children>
-                                <Button layoutX="29.0" layoutY="7.0" mnemonicParsing="false" prefHeight="34.0"
-                                        prefWidth="252.0" text="登  录"/>
+                                <Button layoutX="-3.0" layoutY="7.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="226.0" text="登  录" />
                             </children>
                         </Pane>
-                        <Label prefHeight="42.0" prefWidth="270.0" styleClass="login-title" textAlignment="CENTER"
-                               text="欢 迎 登 录" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                              <Label fx:id="loginTitle" layoutX="6.0" layoutY="-8.0" prefHeight="38.0" prefWidth="204.0" styleClass="login-title" text="    欢 迎 登 录" textAlignment="CENTER" />
+                     </children>
+                  </Pane>
                     </children>
                 </GridPane>
             </children>

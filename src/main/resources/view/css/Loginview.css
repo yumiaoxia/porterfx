@@ -6,7 +6,7 @@
 .button {
     -fx-background-color: linear-gradient(#61a2b1, #2A5058);
     -fx-font-size: 16px;
-    -fx-pref-width: 240px;
+    -fx-pref-width: 210px;
     -fx-pref-height: 28px;
     -fx-text-alignment: center;
     -fx-text-fill: #fff;
@@ -14,23 +14,55 @@
     -fx-background-radius: 12px;
 }
 
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
 .text-field {
+    -fx-font-size: 14px;
+    -fx-text-fill: #656565;
     -fx-background-radius: 5%;
     -fx-border-radius: 5%;
 }
 
 .login-title {
     -fx-text-fill: #353535;
-    -fx-font-family: '微软雅黑';
+    -fx-font-family: 'Leelawadee UI';
     -fx-font-weight: bolder;
-    -fx-font-size: 32px;
-    -fx-font-fill: darkslategray;
+    -fx-font-size: 28px;
 }
 
+.link{
+    -fx-text-fill: blue;
+}
+.link:hover{
+    -fx-cursor: hand;
+}
+
+.link:visited{
+   -fx-text-fill: purple;
+}
+
+.form-row{
+    -fx-border-color: #858585;
+    -fx-border-width: 0 0 3 0;
+    -fx-start-margin: 15px;
+    -fx-background-color: parent;
+}
+
+.text-field{
+    -fx-background-color: parent;
+    -fx-border: gone;
+    -fx-background-insets: 0;
+}
+
+
 .form-box {
-    -fx-box-shadow: 10px 20px 15px #000;
-    -fx-border-radius: 5%;
-    -fx-background-radius: 5%;
+    -fx-effect: dropshadow(three-pass-box, #a5a5a5, 2.0,0, 1, 2);
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
     -fx-background-color: #fff;
 }
 

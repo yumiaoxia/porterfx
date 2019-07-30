@@ -55,14 +55,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>com.zenjava</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.itsherman.porterfx.PorterfxApplication</mainClass>
-                    <vendor>Spartajet</vendor>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>com.zenjava</groupId>-->
+<!--                <artifactId>javafx-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <mainClass>com.itsherman.porterfx.PorterfxApplication</mainClass>-->
+<!--                    <vendor>Spartajet</vendor>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
