@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./src/main/resources/db/porterfx.db;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sherman
+    password: 123456
+  jpa:
+    database: h2
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console

@@ -28,5 +28,7 @@ public class PorterfxApplication extends AbstractJavaFxApplicationSupport {
     @Override
     public void start(Stage stage) throws Exception {
         super.start(stage);
+        stage.setResizable(false);
+        stage.setTitle("porter");
     }
 }

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" styleClass="black-ground" stylesheets="@css/Loginview.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.itsherman.porterfx.controller.LoginController">
     <children>
         <Pane layoutX="95.0" layoutY="64.0" prefHeight="266.0" prefWidth="410.0" styleClass="form-box">
@@ -26,27 +24,33 @@
                     <children>
                         <Pane prefHeight="38.0" prefWidth="183.0" styleClass="form-row" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <children>
-                                <Label fx:id="usernameLabel" contentDisplay="RIGHT" layoutX="8.0" prefHeight="34.0" prefWidth="26.0" text="用  户名" />
-                                <TextField layoutX="32.0" layoutY="1.0" prefHeight="36.0" prefWidth="170.0" styleClass="text-field" />
+                                <Label fx:id="usernameLabel" contentDisplay="RIGHT" layoutX="2.0" prefHeight="34.0"
+                                       prefWidth="32.0" text="用  户名"/>
+                                <TextField fx:id="usernameField" layoutX="32.0" layoutY="1.0"
+                                           onMouseClicked="#clearTips" prefHeight="36.0" prefWidth="170.0"
+                                           styleClass="text-field"/>
                             </children>
                         </Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0" styleClass="form-row" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <children>
-                                <Label fx:id="passwordLabel" layoutX="9.0" layoutY="8.0" prefHeight="24.0" prefWidth="26.0" text="密      码" />
-                                <PasswordField layoutX="26.0" layoutY="1.0" prefHeight="36.0" prefWidth="170.0" />
+                                <Label fx:id="passwordLabel" layoutX="3.0" layoutY="8.0" prefHeight="24.0"
+                                       prefWidth="32.0" text="密      码"/>
+                                <PasswordField fx:id="passwordField" layoutX="34.0" layoutY="1.0"
+                                               onMouseClicked="#checkName" prefHeight="36.0" prefWidth="170.0"/>
                             </children>
                         </Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <children>
-                                <Label prefHeight="34.0" prefWidth="73.0" styleClass="link" text="注 册" />
-                                <Label layoutX="133.0" prefHeight="34.0" prefWidth="73.0" styleClass="link" text="忘记密码" />
+                                <Label fx:id="registerLink" prefHeight="34.0" prefWidth="73.0" styleClass="link"
+                                       text="注 册"/>
+                                <Label fx:id="forgetPwdLink" layoutX="144.0" onDragDone="#forgetPwd" prefHeight="34.0"
+                                       prefWidth="73.0" styleClass="link" text="忘记密码"/>
                             </children>
                         </Pane>
-                        <Label text="" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label text="" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <children>
-                                <Button layoutX="-3.0" layoutY="7.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="226.0" text="登  录" />
+                                <Button fx:id="loginBtn" layoutX="-3.0" layoutY="7.0" mnemonicParsing="false"
+                                        onAction="#doLogin" prefHeight="24.0" prefWidth="226.0" text="登  录"/>
                             </children>
                         </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -54,6 +58,9 @@
                               <Label fx:id="loginTitle" layoutX="6.0" layoutY="-8.0" prefHeight="38.0" prefWidth="204.0" styleClass="login-title" text="    欢 迎 登 录" textAlignment="CENTER" />
                      </children>
                   </Pane>
+                        <Label fx:id="usernameTip" styleClass="warn-tip" text="" GridPane.columnIndex="2"
+                               GridPane.rowIndex="2"/>
+                        <Label fx:id="passwordTip" text="" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
                     </children>
                 </GridPane>
             </children>

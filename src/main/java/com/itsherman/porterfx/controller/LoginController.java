@@ -1,23 +1,25 @@
 package com.itsherman.porterfx.controller;
 
 import com.itsherman.porterfx.PorterfxApplication;
-import com.itsherman.porterfx.view.LoginView;
-import com.sun.javaws.Main;
+import com.itsherman.porterfx.applicationService.LoginApplicationService;
+import com.itsherman.porterfx.utils.BehaviourUtils;
+import com.itsherman.porterfx.view.IndexView;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
-import javax.swing.*;
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,7 +35,10 @@ public class LoginController implements Initializable {
     private ResourceBundle bundle;
 
     @Autowired
-    private LoginView loginView;
+    private IndexView indexView;
+
+    @Autowired
+    private LoginApplicationService loginApplicationService;
 
     @FXML
     private AnchorPane rootPane;
@@ -48,10 +53,16 @@ public class LoginController implements Initializable {
     private Label passwordLabel;
 
     @FXML
-    private TextField userNameField;
+    private TextField usernameField;
+
+    @FXML
+    private Label usernameTip;
 
     @FXML
     private PasswordField passwordField;
+
+    @FXML
+    private Label passwordTip;
 
     @FXML
     private Label registerLink;
@@ -62,6 +73,8 @@ public class LoginController implements Initializable {
     @FXML
     private Button loginBtn;
 
+    private boolean canLogin;
+    private boolean validUsername = false;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.bundle = resources;
@@ -78,8 +91,84 @@ public class LoginController implements Initializable {
         passwordLabel.setContentDisplay(ContentDisplay.RIGHT);
         passwordLabel.setGraphic(pwdImageView);
 
+        usernameField.setPromptText("请输入用户名");
+        passwordField.setPromptText("请输入密码");
+
+
+        registerLink.setUnderline(true);
+        forgetPwdLink.setUnderline(true);
+
+        canLogin = false;
+        loginBtn.setDisable(!canLogin);
+
     }
 
+    @FXML
+    private void clearTips() {
+        usernameTip.setText(null);
+        usernameTip.setGraphic(null);
+    }
+
+    @FXML
+    private void checkName() {
+        String username = usernameField.getText().trim();
+        passwordTip.setText(null);
+        passwordTip.setGraphic(null);
+        if (StringUtils.isEmpty(username)) {
+            usernameTip.setText("Tips: 用户名不能为空");
+        } else {
+            boolean flag = loginApplicationService.existUser(username);
+            if (flag) {
+                validUsername = true;
+                loginBtn.setDisable(false);
+                BehaviourUtils.venderIcon(usernameTip, "view/icon/ok_16.png");
+
+            } else {
+                BehaviourUtils.venderIcon(usernameTip, "view/icon/error_16.png");
+            }
+        }
+    }
+
+
+    @FXML
+    private void forgetPwd() {
+
+    }
+
+    @FXML
+    private void doLogin() {
+        String password = passwordField.getText().trim();
+        String username = usernameField.getText().trim();
+        if (!validUsername || !StringUtils.isEmpty(password)) {
+            boolean result = loginApplicationService.login(username, password);
+            if (!result) {
+                BehaviourUtils.venderIcon(passwordTip, "view/icon/error_16.png");
+                BehaviourUtils.alert(Alert.AlertType.ERROR, "登录失败提示", "登录失败", "用户名和密码不一致");
+            } else {
+                BehaviourUtils.venderIcon(passwordTip, "view/icon/ok_16.png");
+                Stage stage = PorterfxApplication.getStage();
+                stage.setResizable(true);
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                stage.setWidth(900D);
+                stage.setHeight(600D);
+                stage.setX((screenSize.getWidth() - stage.getWidth()) / 4);
+                stage.setY((screenSize.getHeight() - stage.getHeight()) / 8);
+                PorterfxApplication.showView(IndexView.class);
+                //BehaviourUtils.alert(Alert.AlertType.INFORMATION,"登录成功提示","登录成功","登录成功，正在跳转...");
+            }
+        } else {
+            if (validUsername) {
+                if (StringUtils.isEmpty(username)) {
+                    usernameTip.setText("Tips: 用户名不能为空");
+                }
+                BehaviourUtils.alert(Alert.AlertType.ERROR, "登录失败提示", "登录失败", "请输入正确的用户名");
+            } else {
+                passwordTip.setTextFill(Color.RED);
+                passwordTip.setText("密码不能为空");
+            }
+        }
+        loginBtn.setDisable(true);
+    }
 
 
 }

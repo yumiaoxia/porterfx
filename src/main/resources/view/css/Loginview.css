@@ -47,15 +47,22 @@
 
 .form-row{
     -fx-border-color: #858585;
-    -fx-border-width: 0 0 3 0;
+    -fx-border-width: 0 0 2 0;
     -fx-start-margin: 15px;
-    -fx-background-color: parent;
 }
 
 .text-field{
-    -fx-background-color: parent;
     -fx-border: gone;
     -fx-background-insets: 0;
+    -fx-font-weight: normal;
+    -fx-background-color: parent;
+}
+
+.warn-tip {
+    -fx-font-style: italic;
+    -fx-text-fill: #F00;
+    -fx-font-weight: lighter;
+    -fx-font-size: 10px;
 }
 
 
