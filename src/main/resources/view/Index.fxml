@@ -4,78 +4,56 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" focusTraversable="true" prefHeight="600.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/8" fx:controller="com.itsherman.porterfx.view.IndexView">
-    <top>
-        <MenuBar scaleShape="false" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
-            <menus>
-                <Menu fx:id="directory" mnemonicParsing="false" text="目录"/>
-                <Menu fx:id="mailBox" mnemonicParsing="false" text="邮箱"/>
-                <Menu fx:id="upload" mnemonicParsing="false" text="上传"/>
-                <Menu fx:id="exit" mnemonicParsing="false" text="退出"/>
-            </menus>
-        </MenuBar>
-    </top>
-    <effect>
-        <Lighting diffuseConstant="1.25" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
-            <bumpInput>
-                <Shadow/>
-            </bumpInput>
-            <light>
-                <Light.Distant/>
-            </light>
-        </Lighting>
-    </effect>
-    <center>
-        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-            <tabs>
-                <Tab fx:id="download" text="下载">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <AnchorPane layoutX="122.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0"
-                                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="indexRootPane" focusTraversable="true" prefHeight="600.0"
+            prefWidth="900.0" stylesheets="@./css/index.css" xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.itsherman.porterfx.view.IndexView">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <MenuBar fx:id="menuBar" prefHeight="30.0" prefWidth="900.0" scaleShape="false"
+                         BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu fx:id="directoryMenu" mnemonicParsing="false" text="目录"/>
+                        <Menu fx:id="mailMenu" mnemonicParsing="false" text="邮箱"/>
+                        <Menu fx:id="uploadMenu" mnemonicParsing="false" text="上传"/>
+                        <Menu fx:id="exitMenu" mnemonicParsing="false" text="退出"/>
+                    </menus>
+                </MenuBar>
+            </top>
+            <center>
+                <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE"
+                         BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab fx:id="download" text="下载">
+                            <content>
+                                <AnchorPane fx:id="downloadContent" prefHeight="200.0" prefWidth="200.0"/>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="downloading" text="下载中">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
-                                        <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-                                                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                   AnchorPane.topAnchor="0.0" HBox.hgrow="ALWAYS">
+                                        <TableView layoutX="14.0" prefHeight="317.0" prefWidth="600.0"
+                                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columns>
-                                                <TableColumn prefWidth="338.0" text="文件名"/>
-                                                <TableColumn minWidth="0.0" prefWidth="339.0" text="大小"/>
-                                                <TableColumn prefWidth="222.0" text="操作"/>
+                                                <TableColumn prefWidth="332.0" text="文件名"/>
+                                                <TableColumn prefWidth="328.0" text="进度"/>
+                                                <TableColumn prefWidth="239.0" text="操作"/>
                                             </columns>
                                         </TableView>
                                     </children>
                                 </AnchorPane>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-                <Tab fx:id="downloading" text="下载中">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <TableView layoutX="14.0" prefHeight="317.0" prefWidth="600.0"
-                                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <columns>
-                                        <TableColumn prefWidth="332.0" text="文件名"/>
-                                        <TableColumn prefWidth="328.0" text="进度"/>
-                                        <TableColumn prefWidth="239.0" text="操作"/>
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-                <Tab fx:id="uploading" text="上传中">
-                    <content>
-                        <AnchorPane>
-                            <children>
-                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0"
-                                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                      AnchorPane.topAnchor="0.0">
+                            </content>
+                        </Tab>
+                        <Tab fx:id="uploading" text="上传中">
+                            <content>
+                                <AnchorPane>
+                                    <children>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0"
+                                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                              AnchorPane.topAnchor="0.0">
                                     <children>
                                         <HBox prefHeight="39.0" prefWidth="600.0">
                                             <children>
@@ -131,12 +109,24 @@
                                         </HBox>
                                         <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS"/>
                                     </children>
-                                </VBox>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </center>
-</BorderPane>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </center>
+        </BorderPane>
+    </children>
+    <effect>
+        <Lighting diffuseConstant="1.25" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+            <bumpInput>
+                <Shadow/>
+            </bumpInput>
+            <light>
+                <Light.Distant/>
+            </light>
+        </Lighting>
+    </effect>
+</AnchorPane>

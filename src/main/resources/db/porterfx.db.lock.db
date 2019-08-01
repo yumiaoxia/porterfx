@@ -1,6 +1,6 @@
 #FileLock
-#Thu Aug 01 03:02:31 CST 2019
+#Fri Aug 02 02:07:10 CST 2019
 hostName=DESKTOP-APL7JGU
-id=16c49698220379e112100feea24cbef57f0fb39372b
+id=16c4e5d2a782b16c8ba6f145e6d1c373b044cf64d20
 method=file
-server=192.168.91.1\:57019
+server=192.168.43.162\:55520

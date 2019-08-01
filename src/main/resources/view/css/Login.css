@@ -21,8 +21,8 @@
 }
 
 .text-field {
-    -fx-font-size: 14px;
-    -fx-text-fill: #656565;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #353535;
     -fx-background-radius: 5%;
     -fx-border-radius: 5%;
 }
