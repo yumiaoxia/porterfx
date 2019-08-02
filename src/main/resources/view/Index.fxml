@@ -8,6 +8,9 @@
             prefWidth="900.0" stylesheets="@./css/index.css" xmlns="http://javafx.com/javafx/8"
             fx:controller="com.itsherman.porterfx.view.IndexView">
     <children>
+        <fx:define>
+            <fx:include source="Download.fxml" fx:id="downloadContent"/>
+        </fx:define>
         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -25,10 +28,7 @@
                 <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE"
                          BorderPane.alignment="CENTER">
                     <tabs>
-                        <Tab fx:id="download" text="下载">
-                            <content>
-                                <AnchorPane fx:id="downloadContent" prefHeight="200.0" prefWidth="200.0"/>
-                            </content>
+                        <Tab fx:id="download" text="下载" content="$downloadContent">
                         </Tab>
                         <Tab fx:id="downloading" text="下载中">
                             <content>
