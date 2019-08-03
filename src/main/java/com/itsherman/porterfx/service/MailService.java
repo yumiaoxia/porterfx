@@ -1,5 +1,6 @@
 package com.itsherman.porterfx.service;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
 
 /**
@@ -8,5 +9,5 @@ import javax.mail.MessagingException;
  */
 public interface MailService {
 
-    void receive() throws MessagingException;
+    Message[] receive() throws MessagingException;
 }

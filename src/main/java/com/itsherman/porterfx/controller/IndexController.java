@@ -1,5 +1,6 @@
 package com.itsherman.porterfx.controller;
 
+import com.itsherman.porterfx.applicationService.DownApplicationService;
 import com.itsherman.porterfx.domain.DownloadItem;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.collections.FXCollections;
@@ -11,6 +12,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,14 +54,19 @@ public class IndexController implements Initializable {
     private DownloadController downloadController;
 
 
+    @Autowired
+    DownApplicationService downApplicationService;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+        showDownLoadView();
     }
 
 
-    private void showDownLoadView() {
+    public void showDownLoadView() {
+        Pageable pageable = PageRequest.of(0, 6);
+        downApplicationService.getDownLoadPage(pageable);
     }
 }

@@ -1,11 +1,11 @@
 spring:
   mail:
-    port: 25
-    username: 1253950375
+    port: 995
+    username: 1253950375@qq.com
     password: immerowoyjbqidfa
-    protocol: smtp
+    protocol: pop3
     default-encoding: utf-8
-    host: smtp.qq.com
+    host: pop.qq.com
     properties:
       mail:
         smtp:

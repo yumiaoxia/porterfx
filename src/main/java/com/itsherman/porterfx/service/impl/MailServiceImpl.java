@@ -1,6 +1,5 @@
 package com.itsherman.porterfx.service.impl;
 
-import com.itsherman.porterfx.CommonConstants;
 import com.itsherman.porterfx.domain.MailProperties;
 import com.itsherman.porterfx.service.MailService;
 import org.slf4j.Logger;
@@ -25,24 +24,32 @@ public class MailServiceImpl implements MailService {
 
 
     @Override
-    public void receive() throws MessagingException {
+    public Message[] receive() throws MessagingException {
         //准备连接服务器的会话信息
-        Properties prop = new Properties();
-        prop.setProperty(CommonConstants.RECEIVE_PROTOCOL, mailProperties.getProtocol());
-        prop.setProperty(CommonConstants.RECEIVE_HOST, mailProperties.getHost());
-        prop.setProperty(CommonConstants.RECEIVE_PORT, String.valueOf(mailProperties.getPort()));
+        Properties props = new Properties();
+        props.setProperty("mail.pop3.host", mailProperties.getHost());
+        props.setProperty("mail.pop3.port", mailProperties.getPort() + "");
+        // SSL安全连接参数
+        props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.setProperty("mail.pop3.socketFactory.fallback", "true");
+        props.setProperty("mail.pop3.socketFactory.port", mailProperties.getPort() + "");
 
         // 获取会话实例
-        Session session = Session.getInstance(prop);
+        Session session = Session.getDefaultInstance(props);
 
-        // 创建IMAP协议的store对象
-        Store store = session.getStore("imap");
+        URLName urlName = new URLName(mailProperties.getProtocol(), mailProperties.getHost(), mailProperties.getPort(), null, mailProperties.getUsername(), mailProperties.getPassword());
+        // 创建pop协议的store对象
+        Store store = session.getStore(urlName);
 
         //连接邮件服务器
-        store.connect(mailProperties.getUsername(), mailProperties.getPassword());
+        store.connect();
 
         // 获取收件箱
         Folder folder = store.getFolder("INBOX");
+        if (folder == null) {
+            log.error("连接邮箱失败");
+            return null;
+        }
         // 以读写方式打开收件箱
         folder.open(Folder.READ_WRITE);
 
@@ -52,6 +59,6 @@ public class MailServiceImpl implements MailService {
         log.info("收件箱共 {} 封新邮件", folder.getNewMessageCount());
         log.info("收件箱共 {} 封未读邮件", folder.getUnreadMessageCount());
         log.info("收件箱共 {} 封已删除邮件", folder.getDeletedMessageCount());
-        log.info("\n——————————————————————————————————开始解析邮件——————————————————————————————————————————");
+        return messages;
     }
 }

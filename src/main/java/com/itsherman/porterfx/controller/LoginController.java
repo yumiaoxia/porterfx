@@ -34,6 +34,8 @@ public class LoginController implements Initializable {
 
     private ResourceBundle bundle;
 
+    private URL location;
+
     @Autowired
     private IndexView indexView;
 
@@ -73,11 +75,15 @@ public class LoginController implements Initializable {
     @FXML
     private Button loginBtn;
 
+    @Autowired
+    private IndexController indexController;
+
     private boolean canLogin;
     private boolean validUsername = false;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.bundle = resources;
+        this.location = location;
 
         Image usernameImage = new Image("view/icon/login_user.png");
         ImageView userNameImageView = new ImageView(usernameImage);
@@ -100,7 +106,6 @@ public class LoginController implements Initializable {
 
         canLogin = false;
         loginBtn.setDisable(!canLogin);
-
     }
 
     @FXML
@@ -154,7 +159,7 @@ public class LoginController implements Initializable {
                 stage.setX((screenSize.getWidth() - stage.getWidth()) / 4);
                 stage.setY((screenSize.getHeight() - stage.getHeight()) / 8);
                 PorterfxApplication.showView(IndexView.class);
-                //BehaviourUtils.alert(Alert.AlertType.INFORMATION,"登录成功提示","登录成功","登录成功，正在跳转...");
+                indexController.initialize(location, bundle);
             }
         } else {
             if (validUsername) {
