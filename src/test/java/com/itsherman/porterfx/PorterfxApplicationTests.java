@@ -1,11 +1,16 @@
 package com.itsherman.porterfx;
 
+import com.itsherman.porterfx.applicationService.DownApplicationService;
 import com.itsherman.porterfx.dao.entity.User;
+import com.itsherman.porterfx.domain.DownloadItem;
 import com.itsherman.porterfx.service.UserService;
+import javafx.collections.ObservableList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -21,6 +26,9 @@ public class PorterfxApplicationTests {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private DownApplicationService downApplicationService;
 
     @Test
     public void contextLoads() {
@@ -54,6 +62,17 @@ public class PorterfxApplicationTests {
         for (String string : strings) {
             System.out.println(string);
         }
+    }
+
+    @Test
+    public void testDownInits() throws InterruptedException {
+        Pageable pageable = PageRequest.of(0, 6);
+        while (true) {
+            ObservableList<DownloadItem> downLoadPage = downApplicationService.getDownLoadPage(pageable);
+            System.out.println(downLoadPage.size());
+            Thread.currentThread().sleep(1000);
+        }
+
 
     }
 

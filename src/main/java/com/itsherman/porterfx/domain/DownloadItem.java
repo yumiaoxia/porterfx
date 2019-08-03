@@ -1,7 +1,5 @@
 package com.itsherman.porterfx.domain;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -11,15 +9,15 @@ import javafx.beans.property.StringProperty;
  */
 public class DownloadItem {
 
-    private final IntegerProperty itemNO;
+    private final StringProperty itemNO;
 
     private final StringProperty fileNameProperty;
 
     private final StringProperty fileSizeProperty;
 
 
-    public DownloadItem(Integer itemNO, String fileName, String fileSize) {
-        this.itemNO = new SimpleIntegerProperty(itemNO);
+    public DownloadItem(String itemNO, String fileName, String fileSize) {
+        this.itemNO = new SimpleStringProperty(itemNO);
         this.fileNameProperty = new SimpleStringProperty(fileName);
         this.fileSizeProperty = new SimpleStringProperty(fileSize);
     }
@@ -48,15 +46,15 @@ public class DownloadItem {
         return fileSizeProperty;
     }
 
-    public int getItemNO() {
+    public String getItemNO() {
         return itemNO.get();
     }
 
-    public void setItemNO(int itemNO) {
+    public void setItemNO(String itemNO) {
         this.itemNO.set(itemNO);
     }
 
-    public IntegerProperty itemNOProperty() {
+    public StringProperty itemNOProperty() {
         return itemNO;
     }
 }

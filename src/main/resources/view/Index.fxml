@@ -28,9 +28,9 @@
                 <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE"
                          BorderPane.alignment="CENTER">
                     <tabs>
-                        <Tab fx:id="download" text="下载" content="$downloadContent">
+                        <Tab fx:id="downloadTab" text="下载" content="$downloadContent">
                         </Tab>
-                        <Tab fx:id="downloading" text="下载中">
+                        <Tab fx:id="downloadingTab" text="下载中">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
@@ -47,7 +47,7 @@
                                 </AnchorPane>
                             </content>
                         </Tab>
-                        <Tab fx:id="uploading" text="上传中">
+                        <Tab fx:id="uploadingTab" text="上传中">
                             <content>
                                 <AnchorPane>
                                     <children>

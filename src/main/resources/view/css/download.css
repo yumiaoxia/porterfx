@@ -1,0 +1,53 @@
+/*表格头部背景*/
+.table-view .column-header-background {
+    /*-fx-background-image: url("/resource/img/competition_table_title_bg.png");*/
+    /*-fx-background-color: #1979CA;*/
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-background-size: stretch;
+}
+
+/*表格内容区域*/
+.table-view .placeholder {
+    -fx-background-color: transparent;
+}
+
+/*表格列*/
+.table-column {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+}
+
+/*表格内容区域每行的样式*/
+.table-row-cell {
+    -fx-pref-height: 35;
+    -fx-background-color: #befafa;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #beecfb;
+}
+
+.table-row-cell .text {
+    /*-fx-fill: #1c91c5;*/
+    -fx-font-family: "FZCuYuan-M03S";
+    -fx-font-size: 10pt;
+}
+
+.table-row-cell:visited {
+    -fx-text-fill: #ffa3a3;
+}
+
+.button {
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-font-size: 14px;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 28px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #fff;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 12px;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}

@@ -1,7 +1,9 @@
 package com.itsherman.porterfx.service;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Part;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @author yumiaoxia 创建时间：2019/8/3
@@ -9,5 +11,5 @@ import javax.mail.MessagingException;
  */
 public interface MailService {
 
-    Message[] receive() throws MessagingException;
+   List<Part> receive() throws MessagingException, IOException;
 }

@@ -5,6 +5,7 @@ import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,6 +13,7 @@ import java.util.Collection;
 /**
  * @author yumiaoxia
  */
+@EnableScheduling
 @SpringBootApplication
 public class PorterfxApplication extends AbstractJavaFxApplicationSupport {
 

@@ -2,26 +2,30 @@
 .root {
     -fx-font-size: 10pt;
     -fx-background-color: #c9c9c9;
+    -fx-border-width: 0 0 0 0;
+    -fx-start-margin: 0;
+    -fx-end-margin: 0;
+    -fx-padding: 0;
 }
 
 .menu-bar {
     -fx-font-family: "黑体";
-    -fx-font-size: 12pt;
-    /*-fx-background-color: linear-gradient(to bottom,#81f7f3,#e0f7f8, #81f7f3);*/
-    -fx-background-color: #C9C9C9;
+    /*-fx-font-size: 12pt;*/
+    -fx-background-color: linear-gradient(to bottom, #81f7f3, #e0f7f8, #81f7f3);
+    /*-fx-background-color: #C9C9C9;*/
     -fx-font-weight: bolder;
     -fx-pref-height: 14pt;
 }
 
 .tab {
-    -fx-background-color: #C9C9C9;
+    -fx-background-color: #FAFAFA;
     -fx-font-family: "黑体";
     -fx-pref-width: 100;
     -fx-font-weight: bold;
 }
 
 .tab:selected {
-    -fx-background-color: #1979CA;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
 }
 
 .menu {
@@ -32,21 +36,4 @@
     -fx-background-color: #C9C9C9;
 }
 
-.table-view .column-header .label {
-    -fx-font-family: "黑体";
-    -fx-font-weight: bold;
-    -fx-text-fill: rgba(34, 34, 34, 0.96);
-}
 
-.table-view > .column-header-background {
-    -fx-pref-height: 20pt;
-}
-
-.table-row-cell {
-    -fx-alignment: center-left;
-}
-
-.table-view {
-    -fx-table-cell-border-color: transparent;
-    -fx-border-color: #FFF;
-}

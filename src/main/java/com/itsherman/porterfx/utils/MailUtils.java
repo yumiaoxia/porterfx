@@ -1,10 +1,9 @@
 package com.itsherman.porterfx.utils;
 
-import javax.mail.*;
-import java.io.IOException;
+import javax.mail.Message;
+import javax.mail.MessagingException;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * <p> </p>
@@ -34,16 +33,4 @@ public class MailUtils {
     }
 
 
-    public static void collectFilePart(List<Part> parts, Multipart multiPart) throws MessagingException, IOException {
-        for (int i = 0, n = multiPart.getCount(); i < n; i++) {
-            BodyPart part = multiPart.getBodyPart(i);
-            if (part.getContent() instanceof Multipart) {
-                collectFilePart(parts, (Multipart) part.getContent());
-            } else {
-                if (part.getDisposition() != null) {
-                    parts.add(part);
-                }
-            }
-        }
-    }
 }

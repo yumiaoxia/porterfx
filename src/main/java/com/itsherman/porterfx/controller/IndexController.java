@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ import java.util.ResourceBundle;
  */
 @FXMLController
 public class IndexController implements Initializable {
+
+    private URL location;
+    private ResourceBundle bundle;
 
     @FXML
     private BorderPane indexRootPane;
@@ -44,6 +48,15 @@ public class IndexController implements Initializable {
     private Menu exitMenu;
 
     @FXML
+    private Tab downLoadTab;
+
+    @FXML
+    private Tab downLoadingTab;
+
+    @FXML
+    private Tab uploadingTab;
+
+    @FXML
     private AnchorPane downloadContent;
 
 
@@ -61,12 +74,24 @@ public class IndexController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.location = location;
+        this.bundle = resources;
+
         showDownLoadView();
+
     }
 
 
     public void showDownLoadView() {
         Pageable pageable = PageRequest.of(0, 6);
-        downApplicationService.getDownLoadPage(pageable);
+        downloadController.initialize(location, bundle);
+    }
+
+    public ObservableList<DownloadItem> getDownloadData() {
+        return downloadData;
+    }
+
+    public void setDownloadData(ObservableList<DownloadItem> downloadData) {
+        this.downloadData = downloadData;
     }
 }
