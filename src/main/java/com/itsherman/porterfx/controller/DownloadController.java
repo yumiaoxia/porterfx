@@ -1,10 +1,10 @@
 package com.itsherman.porterfx.controller;
 
+import com.itsherman.porterfx.applicationService.DownloadApplicationService;
+import com.itsherman.porterfx.domain.DownloadFile;
 import com.itsherman.porterfx.domain.DownloadItem;
 import de.felixroske.jfxsupport.FXMLController;
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.value.ObservableValueBase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -39,6 +39,9 @@ public class DownloadController implements Initializable {
     @Autowired
     private IndexController indexController;
 
+    @Autowired
+    private DownloadApplicationService downloadApplicationService;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fileNameColumn.setCellValueFactory(cellData -> cellData.getValue().fileNamePropertyProperty());
@@ -47,28 +50,29 @@ public class DownloadController implements Initializable {
         fileSizeColumn.setResizable(true);
         operationColumn.setResizable(true);
         operationColumn.setCellValueFactory((cellData) -> {
-            return new ObservableValue<Button>() {
-                @Override
-                public void addListener(ChangeListener<? super Button> listener) {
-                }
-
-                @Override
-                public void removeListener(ChangeListener<? super Button> listener) {
-                }
-
+            return new ObservableValueBase<Button>() {
                 @Override
                 public Button getValue() {
                     Button button = new Button();
-                    button.setText("下 载");
+                    DownloadFile downloadFile = cellData.getValue().getDownloadFileProperty();
+                    DownloadFile.DownStatus downStatus = downloadFile.getDownStatus();
+                    switch (downStatus) {
+                        case DOWNLOAD_PAUSE:
+                        case DOWNLOADING:
+                            button.setText("下载中");
+                            break;
+                        case DOWNLOAD_FINISHED:
+                            button.setText("重新下载");
+                            break;
+                        default:
+                            button.setText("下 载");
+                    }
+
+                    button.setDefaultButton(true);
+                    button.setOnMouseClicked((event) -> {
+                        downloadApplicationService.createDownLoadTask(downloadFile);
+                    });
                     return button;
-                }
-
-                @Override
-                public void addListener(InvalidationListener listener) {
-                }
-
-                @Override
-                public void removeListener(InvalidationListener listener) {
                 }
             };
         });

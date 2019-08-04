@@ -1,6 +1,6 @@
 package com.itsherman.porterfx.controller;
 
-import com.itsherman.porterfx.applicationService.DownApplicationService;
+import com.itsherman.porterfx.applicationService.DownloadApplicationService;
 import com.itsherman.porterfx.domain.DownloadItem;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.collections.FXCollections;
@@ -68,7 +68,7 @@ public class IndexController implements Initializable {
 
 
     @Autowired
-    DownApplicationService downApplicationService;
+    DownloadApplicationService downloadApplicationService;
 
 
 

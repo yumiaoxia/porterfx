@@ -22,7 +22,7 @@ public class DownloadFile {
 
     private Long actualSize;
 
-    private String finaName;
+    private String fileName;
 
     private DownStatus downStatus;
 
@@ -31,7 +31,7 @@ public class DownloadFile {
     private Part part;
 
 
-    static enum DownStatus {
+    public enum DownStatus {
         /**
          * 等待下载
          */

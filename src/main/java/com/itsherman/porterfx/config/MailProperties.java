@@ -1,4 +1,4 @@
-package com.itsherman.porterfx.domain;
+package com.itsherman.porterfx.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

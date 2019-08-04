@@ -32,12 +32,13 @@ public class DownLoadPool implements Observer {
 
     @Override
     public void update(DownloadFile downloadFile) throws MessagingException, IOException {
+        downloadFile.setDownStatus(DownloadFile.DownStatus.PENDING_DOWNLOAD);
         Part part = downloadFile.getPart();
         String fileName = downloadFile.getSubject();
         long fileSize = part.getInputStream().available();
         BigDecimal newFileSize = BigDecimal.valueOf(fileSize).divide(BigDecimal.valueOf(1024), 2, RoundingMode.HALF_UP);
         String displayFileSize = newFileSize.compareTo(BigDecimal.valueOf(1024)) < 0 ? newFileSize.toPlainString() + "KB" : newFileSize.divide(BigDecimal.valueOf(1024), 2, RoundingMode.HALF_UP).toPlainString() + "M";
-        DownloadItem downloadItem = new DownloadItem(UUID.randomUUID().toString(), fileName, displayFileSize);
+        DownloadItem downloadItem = new DownloadItem(UUID.randomUUID().toString(), fileName, displayFileSize, downloadFile);
         indexController.getDownloadData().add(downloadItem);
     }
 

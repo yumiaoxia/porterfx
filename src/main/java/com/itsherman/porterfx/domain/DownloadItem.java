@@ -1,5 +1,7 @@
 package com.itsherman.porterfx.domain;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -15,11 +17,14 @@ public class DownloadItem {
 
     private final StringProperty fileSizeProperty;
 
+    private final ObjectProperty<DownloadFile> downloadFileProperty;
 
-    public DownloadItem(String itemNO, String fileName, String fileSize) {
+
+    public DownloadItem(String itemNO, String fileName, String fileSize, DownloadFile downloadFile) {
         this.itemNO = new SimpleStringProperty(itemNO);
         this.fileNameProperty = new SimpleStringProperty(fileName);
         this.fileSizeProperty = new SimpleStringProperty(fileSize);
+        this.downloadFileProperty = new SimpleObjectProperty<>(downloadFile);
     }
 
     public String getFileNameProperty() {
@@ -56,5 +61,17 @@ public class DownloadItem {
 
     public StringProperty itemNOProperty() {
         return itemNO;
+    }
+
+    public DownloadFile getDownloadFileProperty() {
+        return downloadFileProperty.get();
+    }
+
+    public void setDownloadFileProperty(DownloadFile downloadFileProperty) {
+        this.downloadFileProperty.set(downloadFileProperty);
+    }
+
+    public ObjectProperty<DownloadFile> downloadFilePropertyProperty() {
+        return downloadFileProperty;
     }
 }

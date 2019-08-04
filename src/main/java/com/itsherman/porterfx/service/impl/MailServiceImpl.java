@@ -1,7 +1,7 @@
 package com.itsherman.porterfx.service.impl;
 
+import com.itsherman.porterfx.config.MailProperties;
 import com.itsherman.porterfx.domain.DownloadFile;
-import com.itsherman.porterfx.domain.MailProperties;
 import com.itsherman.porterfx.pool.DownloadFileSubject;
 import com.itsherman.porterfx.service.MailService;
 import org.slf4j.Logger;
@@ -106,6 +106,8 @@ public class MailServiceImpl implements MailService {
                     DownloadFile downloadFile = new DownloadFile();
                     downloadFile.setSnCode(UUID.randomUUID().toString());
                     downloadFile.setSubject(subject);
+                    downloadFile.setDownStatus(DownloadFile.DownStatus.PENDING_DOWNLOAD);
+                    downloadFile.setFileName(part.getFileName());
                     downloadFile.setPart(part);
                     downloadFileSubject.setDownloadFile(downloadFile);
                 }
