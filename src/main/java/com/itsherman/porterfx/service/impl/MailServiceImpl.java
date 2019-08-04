@@ -2,7 +2,8 @@ package com.itsherman.porterfx.service.impl;
 
 import com.itsherman.porterfx.config.MailProperties;
 import com.itsherman.porterfx.domain.DownloadFile;
-import com.itsherman.porterfx.pool.DownloadFileSubject;
+import com.itsherman.porterfx.pool.DownloadFilePool;
+import com.itsherman.porterfx.pool.DownloadSubject;
 import com.itsherman.porterfx.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.*;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -32,7 +35,10 @@ public class MailServiceImpl implements MailService {
     private MailProperties mailProperties;
 
     @Autowired
-    private DownloadFileSubject downloadFileSubject;
+    private DownloadSubject downloadSubject;
+
+    @Autowired
+    private DownloadFilePool downloadFilePool;
 
 
     @Async
@@ -103,13 +109,20 @@ public class MailServiceImpl implements MailService {
                 collectFilePart(subject, (Multipart) part.getContent());
             } else {
                 if (part.getDisposition() != null) {
+                    long fileSize = part.getInputStream().available();
+                    BigDecimal newFileSize = BigDecimal.valueOf(fileSize).divide(BigDecimal.valueOf(1024), 2, RoundingMode.HALF_UP);
+                    String displayFileSize = newFileSize.compareTo(BigDecimal.valueOf(1024)) < 0 ? newFileSize.toPlainString() + "KB" : newFileSize.divide(BigDecimal.valueOf(1024), 2, RoundingMode.HALF_UP).toPlainString() + "M";
+
                     DownloadFile downloadFile = new DownloadFile();
                     downloadFile.setSnCode(UUID.randomUUID().toString());
                     downloadFile.setSubject(subject);
                     downloadFile.setDownStatus(DownloadFile.DownStatus.PENDING_DOWNLOAD);
                     downloadFile.setFileName(part.getFileName());
+                    downloadFile.setActualSize(fileSize);
                     downloadFile.setPart(part);
-                    downloadFileSubject.setDownloadFile(downloadFile);
+                    downloadFile.setAvailableSize(0L);
+                    downloadFile.setDisplaySize(displayFileSize);
+                    downloadFilePool.registerDownloadFile(downloadFile);
                 }
             }
         }

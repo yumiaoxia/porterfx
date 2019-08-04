@@ -11,20 +11,20 @@ import javafx.beans.property.StringProperty;
  */
 public class DownloadItem {
 
-    private final StringProperty itemNO;
+    private final String itemNO;
 
     private final StringProperty fileNameProperty;
 
     private final StringProperty fileSizeProperty;
 
-    private final ObjectProperty<DownloadFile> downloadFileProperty;
+    private final ObjectProperty<DownloadFile.DownStatus> downStatusProperty;
 
 
-    public DownloadItem(String itemNO, String fileName, String fileSize, DownloadFile downloadFile) {
-        this.itemNO = new SimpleStringProperty(itemNO);
+    public DownloadItem(String itemNO, String fileName, String fileSize, DownloadFile.DownStatus status) {
+        this.itemNO = itemNO;
         this.fileNameProperty = new SimpleStringProperty(fileName);
         this.fileSizeProperty = new SimpleStringProperty(fileSize);
-        this.downloadFileProperty = new SimpleObjectProperty<>(downloadFile);
+        this.downStatusProperty = new SimpleObjectProperty<DownloadFile.DownStatus>(status);
     }
 
     public String getFileNameProperty() {
@@ -52,26 +52,18 @@ public class DownloadItem {
     }
 
     public String getItemNO() {
-        return itemNO.get();
-    }
-
-    public void setItemNO(String itemNO) {
-        this.itemNO.set(itemNO);
-    }
-
-    public StringProperty itemNOProperty() {
         return itemNO;
     }
 
-    public DownloadFile getDownloadFileProperty() {
-        return downloadFileProperty.get();
+    public DownloadFile.DownStatus getDownStatusProperty() {
+        return downStatusProperty.get();
     }
 
-    public void setDownloadFileProperty(DownloadFile downloadFileProperty) {
-        this.downloadFileProperty.set(downloadFileProperty);
+    public void setDownStatusProperty(DownloadFile.DownStatus downStatusProperty) {
+        this.downStatusProperty.set(downStatusProperty);
     }
 
-    public ObjectProperty<DownloadFile> downloadFilePropertyProperty() {
-        return downloadFileProperty;
+    public ObjectProperty<DownloadFile.DownStatus> downStatusPropertyProperty() {
+        return downStatusProperty;
     }
 }

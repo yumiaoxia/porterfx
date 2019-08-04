@@ -1,10 +1,12 @@
 package com.itsherman.porterfx.controller;
 
 import com.itsherman.porterfx.applicationService.DownloadApplicationService;
+import com.itsherman.porterfx.domain.DownLoadingItem;
 import com.itsherman.porterfx.domain.DownloadItem;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
@@ -13,8 +15,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,10 +61,14 @@ public class IndexController implements Initializable {
 
 
     private ObservableList<DownloadItem> downloadData = FXCollections.observableArrayList();
+    private ObservableMap<String, DownLoadingItem> downLoadingData = FXCollections.observableHashMap();
 
 
     @Autowired
     private DownloadController downloadController;
+
+    @Autowired
+    private DownloadingController downloadingController;
 
 
     @Autowired
@@ -77,15 +81,11 @@ public class IndexController implements Initializable {
         this.location = location;
         this.bundle = resources;
 
-        showDownLoadView();
-
-    }
-
-
-    public void showDownLoadView() {
-        Pageable pageable = PageRequest.of(0, 6);
         downloadController.initialize(location, bundle);
+        downloadingController.initialize(location, bundle);
+
     }
+
 
     public ObservableList<DownloadItem> getDownloadData() {
         return downloadData;
@@ -93,5 +93,13 @@ public class IndexController implements Initializable {
 
     public void setDownloadData(ObservableList<DownloadItem> downloadData) {
         this.downloadData = downloadData;
+    }
+
+    public ObservableMap<String, DownLoadingItem> getDownLoadingData() {
+        return downLoadingData;
+    }
+
+    public void setDownLoadingData(ObservableMap<String, DownLoadingItem> downLoadingData) {
+        this.downLoadingData = downLoadingData;
     }
 }

@@ -34,8 +34,6 @@ public class DownloadController implements Initializable {
     @FXML
     private TableColumn<DownloadItem, Button> operationColumn;
 
-    private DownloadItem selectedDownloadItem;
-
     @Autowired
     private IndexController indexController;
 
@@ -54,8 +52,7 @@ public class DownloadController implements Initializable {
                 @Override
                 public Button getValue() {
                     Button button = new Button();
-                    DownloadFile downloadFile = cellData.getValue().getDownloadFileProperty();
-                    DownloadFile.DownStatus downStatus = downloadFile.getDownStatus();
+                    DownloadFile.DownStatus downStatus = cellData.getValue().getDownStatusProperty();
                     switch (downStatus) {
                         case DOWNLOAD_PAUSE:
                         case DOWNLOADING:
@@ -70,7 +67,7 @@ public class DownloadController implements Initializable {
 
                     button.setDefaultButton(true);
                     button.setOnMouseClicked((event) -> {
-                        downloadApplicationService.createDownLoadTask(downloadFile);
+                        downloadApplicationService.createDownLoadTask(cellData.getValue().getItemNO());
                     });
                     return button;
                 }
@@ -78,8 +75,5 @@ public class DownloadController implements Initializable {
         });
 
         this.downloadTable.setItems(indexController.getDownloadData());
-        downloadTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            this.selectedDownloadItem = newValue;
-        });
     }
 }

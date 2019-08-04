@@ -8,6 +8,7 @@ import java.io.IOException;
  * 审核人： 未审核    审核日期: /
  */
 public interface Subject {
+
     public void registerObserver(Observer o);
 
     public void removeObserver(Observer o);

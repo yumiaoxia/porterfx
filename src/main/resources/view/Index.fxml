@@ -10,6 +10,7 @@
     <children>
         <fx:define>
             <fx:include source="Download.fxml" fx:id="downloadContent"/>
+            <fx:include source="Downloading.fxml" fx:id="downloadingContent"/>
         </fx:define>
         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -28,25 +29,8 @@
                 <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE"
                          BorderPane.alignment="CENTER">
                     <tabs>
-                        <Tab fx:id="downloadTab" text="下载" content="$downloadContent">
-                        </Tab>
-                        <Tab fx:id="downloadingTab" text="下载中">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <TableView layoutX="14.0" prefHeight="317.0" prefWidth="600.0"
-                                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <columns>
-                                                <TableColumn prefWidth="332.0" text="文件名"/>
-                                                <TableColumn prefWidth="328.0" text="进度"/>
-                                                <TableColumn prefWidth="239.0" text="操作"/>
-                                            </columns>
-                                        </TableView>
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
+                        <Tab fx:id="downloadTab" text="下载" content="$downloadContent"/>
+                        <Tab fx:id="downloadingTab" text="下载中" content="$downloadingContent"/>
                         <Tab fx:id="uploadingTab" text="上传中">
                             <content>
                                 <AnchorPane>

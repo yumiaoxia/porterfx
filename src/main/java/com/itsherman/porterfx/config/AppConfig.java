@@ -1,8 +1,10 @@
 package com.itsherman.porterfx.config;
 
 import com.itsherman.porterfx.controller.IndexController;
-import com.itsherman.porterfx.pool.DownLoadPool;
-import com.itsherman.porterfx.pool.DownloadFileSubject;
+import com.itsherman.porterfx.pool.DownLoadObserver;
+import com.itsherman.porterfx.pool.DownLoadingSubject;
+import com.itsherman.porterfx.pool.DownloadSubject;
+import com.itsherman.porterfx.pool.DownloadingObserver;
 import com.itsherman.porterfx.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -36,15 +38,15 @@ public class AppConfig {
     }
 
     @Bean
-    public DownLoadPool downLoadPool() {
-        DownLoadPool pool = new DownLoadPool();
+    public DownLoadObserver downLoadPool() {
+        DownLoadObserver pool = new DownLoadObserver();
         pool.setIndexController(indexController);
         return pool;
     }
 
     @Bean
-    public DownloadFileSubject partSubject() {
-        DownloadFileSubject subject = new DownloadFileSubject();
+    public DownloadSubject partSubject() {
+        DownloadSubject subject = new DownloadSubject();
         subject.registerObserver(downLoadPool());
         return subject;
     }
@@ -52,6 +54,20 @@ public class AppConfig {
     @PostConstruct
     public void init() throws IOException, MessagingException {
         mailService.receive();
+    }
+
+    @Bean
+    public DownloadingObserver downloadingObserver() {
+        DownloadingObserver downloadingObserver = new DownloadingObserver();
+        downloadingObserver.setIndexController(indexController);
+        return downloadingObserver;
+    }
+
+    @Bean
+    public DownLoadingSubject downLoadingSubject() {
+        DownLoadingSubject downLoadingSubject = new DownLoadingSubject();
+        downLoadingSubject.registerObserver(downloadingObserver());
+        return downLoadingSubject;
     }
 
 }

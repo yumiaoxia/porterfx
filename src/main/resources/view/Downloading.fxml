@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="900.0" stylesheets="@css/download.css"
+            xmlns="http://javafx.com/javafx/8" fx:controller="com.itsherman.porterfx.controller.DownloadingController">
+    <children>
+        <TableView fx:id="downloadingTable" layoutX="14.0" prefHeight="317.0" prefWidth="600.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="fileNameColumn" prefWidth="332.0" text="文件名"/>
+                <TableColumn fx:id="progressColumn" prefWidth="328.0" text="进度"/>
+                <TableColumn fx:id="operationColumn" prefWidth="239.0" text="操作"/>
+            </columns>
+        </TableView>
+    </children>
+
+</AnchorPane>

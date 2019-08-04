@@ -1,4 +1,8 @@
 spring:
+  porterfx:
+    download:
+      dest: download/
+      log: tem/
   mail:
     port: 995
     username: 1253950375@qq.com
